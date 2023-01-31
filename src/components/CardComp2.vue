@@ -4,7 +4,7 @@
 
             <div class="card-body">
                 <h1 class="card-title">{{counter}}</h1>
-                <p class="card-text"><strong>Uso de OPTION.API</strong></p>
+                <p class="card-text"><strong>Uso de COMPOSITION.API</strong></p>
                 <p class="card-text">Incrementa en 1 en cada clic del botón.</p>
                 <div class="d-grid gap-2 col-6 mx-auto">
                     <button type="button" class="btn btn-danger btn-sm"   @click="addCounter" >Incrementar</button>
@@ -16,17 +16,21 @@
     </div>
 </template>
 <script>
-import {defineComponent} from 'vue'
+import {defineComponent,ref} from 'vue'
 export default defineComponent({
-    name:'CardComp',
-    data(){
-        let counter = 0;
-        return {counter}
-    },
-    methods:{
-        addCounter(){this.counter++},
-        subsCounter(){this.counter--},
-        resetCounter(){this.counter = 0}
+    name:'CardComp2',
+    setup(){
+        let counter = ref(0);
+        const addCounter = () => {
+            counter.value++
+        }
+        const subsCounter =()=>{
+            counter.value--
+        }
+        const resetCounter =()=>{
+            counter.value = 0
+        }        
+        return {counter,addCounter,subsCounter,resetCounter}
     }
 })
 </script>
